@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Charactercount</title>
+    <style>
+      body {
+        background: linear-gradient(to right, #8360c3, #9082ac);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      form {
+        background: white;
+        padding: 20px 30px;
+        border-radius: 12px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td {
+        padding: 5px;
+        text-align: left;
+      }
+      textarea {
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <table>
+        <tr>
+          <td>
+            <textarea
+              id="msginput"
+              rows="7"
+              cols="40"
+              maxlength="200"
+              placeholder="Enter your message here"
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td><h1 class="characters">200 characters max</h1></td>
+        </tr>
+        <tr>
+          <td>
+            <p id="warning" style="color: red; display: none">
+              You have reached the character limit!
+            </p>
+          </td>
+        </tr>
+      </table>
+    </form>
+
+    <script>
+      var msginput = document.getElementById("msginput");
+      var char = document.querySelector(".characters");
+      var warning = document.getElementById("warning");
+
+      msginput.addEventListener("input", function () {
+        var inputvalue = event.target.value;
+        console.log(inputvalue.length);
+        char.textContent = inputvalue.length + "/200 characters";
+        if (inputvalue.length >= 200) {
+          warning.style.display = "block";
+        } else {
+          warning.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
